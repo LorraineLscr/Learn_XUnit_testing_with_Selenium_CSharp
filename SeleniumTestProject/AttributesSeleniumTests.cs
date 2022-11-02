@@ -5,6 +5,7 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 using Xunit;
+using System.Linq;
 
 namespace SeleniumTestProject
 {
@@ -31,13 +32,13 @@ namespace SeleniumTestProject
             var addButton = _driver.FindElement(By.Id("addbutton"));
             addButton.Click();
 
-            var todoCheckboxes = _driver.FindElement(By.XPath("//li[@ng-repeat]/input"));
+            var todoCheckboxes = _driver.FindElements(By.XPath("//li[@ng-repeat]/input"));
 
             todoCheckboxes.Last().Click();
 
-            var todoInfos = _driver.FindElement(By.XPath("//li[@ng-repeat]/span"));
+            var todoInfos = _driver.FindElements(By.XPath("//li[@ng-repeat]/span"));
 
-            Assert.Equal("12/18/1992", todoInfos.Last().Text);
+            Assert.Equal("18/12/1992", todoInfos.Last().Text);
         }
 
         public void Dispose()
