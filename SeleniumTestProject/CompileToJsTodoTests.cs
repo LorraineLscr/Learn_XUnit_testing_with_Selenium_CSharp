@@ -9,17 +9,17 @@ using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 using Xunit;
 
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, MaxParallelThreads = 4)]
-namespace XUnitParallelTestting
+
+namespace SeleniumTestProject
 {
-    public class PureJsTodoTests : IDisposable
+    public class CompileToJsTodoTests : IDisposable
     {
         private const int WAIT_FOR_ELEMENT_TIMEOUT = 30; 
         private readonly IWebDriver _driver;
         private readonly WebDriverWait _webDriverWait;
         private readonly  Actions _actions;
 
-        public PureJsTodoTests()
+        public CompileToJsTodoTests()
         {
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
             _driver = new ChromeDriver();
@@ -33,17 +33,17 @@ namespace XUnitParallelTestting
         }
 
         [Theory]
-        [InlineData("Backbone.js")]
-        [InlineData("AngularJS")]
-        [InlineData("React")]
-        [InlineData("Vue.js")]
-        [InlineData("CanJS")]
-        [InlineData("Ember.js")]
-        [InlineData("KnockoutJS")]
-        [InlineData("Marionette.js")]
-        [InlineData("Polymer")]
-        [InlineData("Angular 2.0")]
-        [InlineData("Dart")]
+        [InlineData("Elm")]
+        [InlineData("Closure")]
+        [InlineData("Vanilla JS")]
+        [InlineData("jQuery")]
+        [InlineData("cujoJS")]
+        [InlineData("Spine")]
+        [InlineData("Dojo")]
+        [InlineData("Mithril")]
+        [InlineData("Kotlin + React")]
+        [InlineData("Firebase + AngularJS")]
+        [InlineData("Vanilla ES6")]
         public void VerifyTodoListCreatedSuccessfully(string technology)
         {
             _driver.Navigate().GoToUrl("https://todomvc.com/");
