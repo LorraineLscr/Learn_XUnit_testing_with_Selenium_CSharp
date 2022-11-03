@@ -8,7 +8,7 @@ using Xunit;
 
 namespace SeleniumTestProject
 {
-    public class FirstSeleniumTests { // Nommer ici la class de test
+    public class SeleniumHeadlessTests { // Nommer ici la class de test
 
         [Fact]
         public void CorrectTitleDisplayed_When_NavigateToHomePage() // Décrire ici le contexte comme nom de fonction
@@ -17,10 +17,11 @@ namespace SeleniumTestProject
             // DriverManager est responsable du téléchargement de la bonne version des pilotes
             var chromeOptions = new ChromeOptions(); // Option headless pour cacher la fenetre du navigateur en cours d'execution pendant le test
             chromeOptions.AddArguments("--headless");
-            using var driver = new ChromeDriver(chromeOptions);
-            driver.Navigate().GoToUrl("https://lambdatest.github.io/sample-todo-app/"); // Url sur laquelle on navigue
+            using var _driver = new ChromeDriver(chromeOptions);
+            _driver.Navigate().GoToUrl("https://lambdatest.github.io/sample-todo-app/"); // Url sur laquelle on navigue
+            _driver.Manage().Window.Maximize();
 
-            Assert.Equal("Sample page - lambdatest.com", driver.Title);
+            Assert.Equal("Sample page - lambdatest.com", _driver.Title);
         }
     }
 }
