@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using SeleniumTestProject.firstFixture;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
@@ -12,24 +13,13 @@ using Xunit;
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, MaxParallelThreads = 4)]
 namespace XUnitParallelTestting
 {
-    public class PureJsTodoTests : IDisposable
+    public class PureJsTodoTests : IClassFixture<DriverFixture>
     {
-        private const int WAIT_FOR_ELEMENT_TIMEOUT = 30; 
-        private readonly IWebDriver _driver;
-        private readonly WebDriverWait _webDriverWait;
-        private readonly  Actions _actions;
+        private readonly DriverFixture _fixture;
 
-        public PureJsTodoTests()
+        public PureJsTodoTests(DriverFixture fixture)
         {
-            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            _driver = new ChromeDriver();
-            _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(WAIT_FOR_ELEMENT_TIMEOUT));
-            _actions = new Actions(_driver);
-        }
-
-        public void Dispose()
-        {
-            _driver.Quit();
+            _fixture = fixture;
         }
 
         [Theory]
@@ -46,7 +36,7 @@ namespace XUnitParallelTestting
         [InlineData("Dart")]
         public void VerifyTodoListCreatedSuccessfully(string technology)
         {
-            _driver.Navigate().GoToUrl("https://todomvc.com/");
+            _fixture.Driver.Navigate().GoToUrl("https://todomvc.com/");
             OpenTechnologyApp(technology);
             AddNewToDoItem("Clean the car");
             AddNewToDoItem("Clean the house");
@@ -70,7 +60,7 @@ namespace XUnitParallelTestting
 
         private void ValidateInnerTexIs(IWebElement resultSpan, string expectedText)
         {
-            _webDriverWait.Until(ExpectedConditions.TextToBePresentInElement(resultSpan, expectedText));
+            _fixture.WebDriverWait.Until(ExpectedConditions.TextToBePresentInElement(resultSpan, expectedText));
         }
 
         private IWebElement GetItemCheckBox(string todoItem)
@@ -82,7 +72,7 @@ namespace XUnitParallelTestting
         {
             var todoInput = WaitAndFindElement(By.XPath("//input[@placeholder='What needs to be done?']"));
             todoInput.SendKeys(todoItem);
-            _actions.Click(todoInput).SendKeys(Keys.Enter).Perform();
+            todoInput.SendKeys(Keys.Enter);
         }
 
         private void OpenTechnologyApp(string name)
@@ -92,7 +82,7 @@ namespace XUnitParallelTestting
         }
         private IWebElement WaitAndFindElement(By locator)
         {
-            return _webDriverWait.Until(ExpectedConditions.ElementExists(locator));
+            return _fixture.WebDriverWait.Until(ExpectedConditions.ElementExists(locator));
         }
     }
 }

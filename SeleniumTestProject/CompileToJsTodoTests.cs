@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using SeleniumTestProject.firstFixture;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
@@ -12,24 +13,13 @@ using Xunit;
 
 namespace SeleniumTestProject
 {
-    public class CompileToJsTodoTests : IDisposable
+    public class CompileToJsTodoTests : IClassFixture<DriverFixture>
     {
-        private const int WAIT_FOR_ELEMENT_TIMEOUT = 30; 
-        private readonly IWebDriver _driver;
-        private readonly WebDriverWait _webDriverWait;
-        private readonly  Actions _actions;
+        private readonly DriverFixture _fixture;
 
-        public CompileToJsTodoTests()
+        public CompileToJsTodoTests(DriverFixture fixture)
         {
-            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            _driver = new ChromeDriver();
-            _webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(WAIT_FOR_ELEMENT_TIMEOUT));
-            _actions = new Actions(_driver);
-        }
-
-        public void Dispose()
-        {
-            _driver.Quit();
+            _fixture = fixture;
         }
 
         [Theory]
@@ -46,7 +36,7 @@ namespace SeleniumTestProject
         [InlineData("Vanilla ES6")]
         public void VerifyTodoListCreatedSuccessfully(string technology)
         {
-            _driver.Navigate().GoToUrl("https://todomvc.com/");
+            _fixture.Driver.Navigate().GoToUrl("https://todomvc.com/");
             OpenTechnologyApp(technology);
             AddNewToDoItem("Clean the car");
             AddNewToDoItem("Clean the house");
@@ -60,17 +50,17 @@ namespace SeleniumTestProject
             var resultSpan = WaitAndFindElement(By.XPath("//footer/span"));
             if (expectedCount <= 0)
             {
-                ValidateInnerTexIs(resultSpan, $"{expectedCount} item left");
+                ValidateInnerTextIs(resultSpan, $"{expectedCount} item left");
             }
             else
             {
-                ValidateInnerTexIs(resultSpan, $"{expectedCount} items left");
+                ValidateInnerTextIs(resultSpan, $"{expectedCount} items left");
             }
         }
 
-        private void ValidateInnerTexIs(IWebElement resultSpan, string expectedText)
+        private void ValidateInnerTextIs(IWebElement resultSpan, string expectedText)
         {
-            _webDriverWait.Until(ExpectedConditions.TextToBePresentInElement(resultSpan, expectedText));
+            _fixture.WebDriverWait.Until(ExpectedConditions.TextToBePresentInElement(resultSpan, expectedText));
         }
 
         private IWebElement GetItemCheckBox(string todoItem)
@@ -82,7 +72,7 @@ namespace SeleniumTestProject
         {
             var todoInput = WaitAndFindElement(By.XPath("//input[@placeholder='What needs to be done?']"));
             todoInput.SendKeys(todoItem);
-            _actions.Click(todoInput).SendKeys(Keys.Enter).Perform();
+            todoInput.SendKeys(Keys.Enter);
         }
 
         private void OpenTechnologyApp(string name)
@@ -92,7 +82,7 @@ namespace SeleniumTestProject
         }
         private IWebElement WaitAndFindElement(By locator)
         {
-            return _webDriverWait.Until(ExpectedConditions.ElementExists(locator));
+            return _fixture.WebDriverWait.Until(ExpectedConditions.ElementExists(locator));
         }
     }
 }
