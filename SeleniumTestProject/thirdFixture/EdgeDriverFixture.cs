@@ -4,7 +4,7 @@
     {
         protected override void InitializeDriver()
         {
-            Driver.Start(BrowserType.Edge);
+            Driver.Value.Start(BrowserType.Edge);
         }
 
         public override int WaitForElementTimeout => 30;

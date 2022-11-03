@@ -1,16 +1,19 @@
 using OpenQA.Selenium;
+using System.Collections.Generic;
 using Xunit;
 
 
 namespace SeleniumTestProject.thirdFixture
 {
-    public class CompileToJsTodoEdgeTests : IClassFixture<EdgeDriverFixture>
+    public class CompileToJsTodoEdgeTests : IClassFixture<EdgeDriverFixture>, IClassFixture<PagesFixture>
     {
         private readonly EdgeDriverFixture _fixture;
+        private readonly PagesFixture _pagesFixture;
 
-        public CompileToJsTodoEdgeTests(EdgeDriverFixture fixture)
+        public CompileToJsTodoEdgeTests(EdgeDriverFixture fixture, PagesFixture pagesFixture)
         {
             _fixture = fixture;
+            _pagesFixture = new PagesFixture();
         }
 
         [Theory]
@@ -27,44 +30,10 @@ namespace SeleniumTestProject.thirdFixture
         [InlineData("Vanilla ES6")]
         public void VerifyTodoListCreatedSuccessfully(string technology)
         {
-            _fixture.Driver.GoToUrl("https://todomvc.com/");
-            OpenTechnologyApp(technology);
-            AddNewToDoItem("Clean the car");
-            AddNewToDoItem("Clean the house");
-            AddNewToDoItem("Buy Ketchup");
-            GetItemCheckBox("Buy Ketchup").Click();
-            AssertLeftItems(2);
-        }
+            var itemsToAdd = new List<string>() { "Clean the car", "Clean the house", "Buy Ketchup" };
+            var itemsToCheck = new List<string>() { "Buy Ketchup" };
 
-        private void AssertLeftItems(int expectedCount)
-        {
-            var resultSpan = _fixture.Driver.FindElement(By.XPath("//footer/span"));
-            if (expectedCount <= 0)
-            {
-                _fixture.Driver.ValidateInnerTextIs(resultSpan, $"{expectedCount} item left");
-            }
-            else
-            {
-                _fixture.Driver.ValidateInnerTextIs(resultSpan, $"{expectedCount} items left");
-            }
-        }
-
-        private IWebElement GetItemCheckBox(string todoItem)
-        {
-            return _fixture.Driver.FindElement(By.XPath($"//label[text()='{todoItem}']/preceding-sibling::input"));
-        }
-
-        private void AddNewToDoItem(string todoItem)
-        {
-            var todoInput = _fixture.Driver.FindElement(By.XPath("//input[@placeholder='What needs to be done?']"));
-            todoInput.SendKeys(todoItem);
-            todoInput.SendKeys(Keys.Enter);
-        }
-
-        private void OpenTechnologyApp(string name)
-        {
-            IWebElement technologyLink = _fixture.Driver.FindElement(By.LinkText(name));
-            technologyLink.Click();
+            _pagesFixture.ToDoFacade.VerifyTodoListCreatedSuccefully(technology, itemsToAdd, itemsToCheck, 2);
         }
     }
 }
