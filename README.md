@@ -21,13 +21,13 @@
 
 ###
 
-<h4>Pour démarrer un Projet : </h4>
+<h4> 🎉 Pour démarrer un Projet : </h4>
 Commencer par ouvrir un nouveau projet dans Fichier. <br>
 Rechercher le modèle « Projet de test xUnit » en C# <br>
 Donner un nom de projet et choisir le framework .NET 6.0 <br>
 Ouvrir l’explorateur de tests dans Affichage. <br>
 
-<h4>Prérequis : </h4>
+<h4> 📏 Prérequis : </h4>
 Clic droit sur Dépendances  dans Explorateur de solutions <br>
 Cliquer sur Gérer les packages NuGet <br>
 Cliquer sur Parcourir <br>
@@ -36,20 +36,20 @@ Cocher « inclure la version préliminaire » <br>
 Sélectionner « Selenium.Webdriver » .NET bindings for the Selenium webdriver API <br>
 Enfin cliquer sur installer. <br>
 
-<h4>Packages NuGet supplémentaires : </h4>
+<h4> 📦 Packages NuGet supplémentaires : </h4>
 WebdriverManager : Il est responsable du téléchargement de la bonne version des pilotes. <br>
 xUnit.SkippableFact : Fait en sorte que vos méthodes de test xUnit s'autodéterminent pour signaler un résultat "sauté". Utile pour les cas tels que les résultats "non pris en charge sur cette plate-forme" ou d'autres entrées environnementales. <br>
 AutoFixture : AutoFixture permet aux développeurs de réaliser plus facilement un développement piloté par les tests en automatisant la configuration des montages de test non pertinents, permettant au développeur de test de se concentrer sur l'essentiel de chaque cas de test. <br>
 
-<h4>Commencer à coder le projet : </h4>
+<h4> 🌱 Commencer à coder le projet : </h4>
 Nommer les class de tests  <br>
 Puis décrire le contexte comme nom de fonction <br>
 
-<h4>Nous pouvons exécuter les tests dans le terminal : </h4>
+<h4> 🚩 Nous pouvons exécuter les tests dans le terminal : </h4>
 dotnet test : exécute tous les tests <br>
 dotnet test --filter FullyQualifiedName~nomdelaclasse : exécute une seule class de test <br>
 
-<h4>Attributs et descriptions :</h4>
+<h4> 💡 Attributs et descriptions :</h4>
 
 <table>
 <tr>
@@ -95,7 +95,7 @@ L'approche la plus courante consiste à charger les données à partir de la pro
 </tr>
 </table>
 
-<h4> Documentation : </h4> 
+<h4> 📚 Documentation : </h4> 
 <div align="left">
   <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/youtube/default.svg" width="52" height="40" alt="youtube logo"  /> https://www.youtube.com/watch?v=gOC_lCz2zXs <br>
 </div>
