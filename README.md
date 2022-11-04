@@ -42,6 +42,51 @@ Puis décrire le contexte comme nom de fonction <br>
 dotnet test : exécute tous les tests <br>
 dotnet test --filter FullyQualifiedName~nomdelaclasse : exécute une seule class de test <br>
 
+<h4>Attributs et descriptions :</h4>
+
+<table>
+<tr>
+<td>[Fact]</td>
+<td>L'attribut est utilisé par l'exécuteur de test xUnit.net pour identifier un test unitaire "normal" - une méthode de test qui ne prend aucun argument de méthode.</td>
+</tr>
+<tr>
+<td>Assert.Throws une exception d'enregistrement</td>
+<td>Permet de vérifier les conditions et de les affirmer même lorsque l’exception est générique. De plus, il ne se limite pas à la seule première ligne de la méthode de test.</td>
+</tr>
+<tr>
+<td>Constructor</td>
+<td>Endroit pratique pour placer le code de configuration de contexte réutilisable là où vous souhaitez partager le code sans partager les instances d'objet (ce qui signifie que vous obtenez une copie propre du ou des objets de contexte pour chaque test exécuté).</td>
+</tr>
+<tr>
+<td>IDisposable.Dispose</td>
+<td>Pour le nettoyage de contexte, ajoutez l' IDisposableinterface à votre classe de test et placez le code de nettoyage dans la Dispose()méthode.</td>
+</tr>
+<tr>
+<td>[Trait]</td>
+<td>Utilisé pour définir des métadonnées arbitraires sur un test.  L'attribut Trait reçoit deux arguments. Le premier est le nom réel de la catégorie et le second argument est la sous-section de la catégorie. </td>
+</tr>
+<tr>
+<td>[Theory]</td>
+<td>Représente une suite de tests qui exécutent le même code, mais qui ont des arguments d’entrée différents.  Utilisé lorsqu’il existe une exigence pour des tests paramétrés. Dans de tels cas, [Theory] doit être utilisé à la place de l'attribut [Fact]</td>
+</tr>
+<tr>
+<td>[InlineData]</td>
+<td>Cet attribut est utilisé avec l'attribut [Theory] pour fournir un sous-ensemble de données sur lequel des tests paramétrés seront exécutés.</td>
+</tr>
+<tr>
+<td>[ClassData]</td>
+<td>Cet attribut est utilisé lorsque les paramètres passés aux tests [Theory] ne sont pas des constantes.<br>
+[Theory] <br>
+[ClassData(typeof(some-data))]<br>
+</td>
+</tr>
+<tr>
+<td>[MemberData]</td>
+<td>Cet attribut peut être utilisé pour récupérer des données pour [Theory] à partir d'une méthode statique. <br>
+L'approche la plus courante consiste à charger les données à partir de la propriété d'une classe de test, c'est-à-dire en utilisant IEnumerable< object[ ] >
+</td>
+</tr>
+</table>
 
 <h4> Documentation : </h4> 
 https://www.youtube.com/watch?v=gOC_lCz2zXs <br>
