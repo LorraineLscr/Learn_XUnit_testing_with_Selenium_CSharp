@@ -4,7 +4,7 @@
     {
         protected override void InitializeDriver()
         {
-            Driver.Start(BrowserType.Firefox);
+            Driver.Value.Start(BrowserType.Firefox);
         }
 
         public override int WaitForElementTimeout => 60;

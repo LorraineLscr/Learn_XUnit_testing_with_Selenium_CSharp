@@ -33,7 +33,7 @@ namespace SeleniumTestProject.thirdFixture
             var itemsToAdd = new List<string>() { "Clean the car", "Clean the house", "Buy Ketchup" };
             var itemsToCheck = new List<string>() { "Buy Ketchup" };
 
-            _pagesFixture.ToDoFacade.VerifyTodoListCreatedSuccefully(technology, itemsToAdd, itemsToCheck, 2);
+            _pagesFixture.ToDoFacade.VerifyTodoListCreatedSuccefully(technology, itemsToAdd, itemsToCheck, 3);
         }
     }
 }

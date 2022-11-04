@@ -4,7 +4,7 @@
     {
         protected override void InitializeDriver()
         {
-            Driver.Start(BrowserType.Safari);
+            Driver.Value.Start(BrowserType.Safari);
         }
 
         public override int WaitForElementTimeout => 20;
