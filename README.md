@@ -37,8 +37,8 @@ Sélectionner « Selenium.Webdriver » .NET bindings for the Selenium webdriver 
 Enfin cliquer sur installer. <br>
 
 <h4>Packages NuGet supplémentaires : </h4>
-WebdriverManager : Il est responsible du téléchargement de la bonne version des pilotes. <br>
-xUnit.SkippableFact : Faites en sorte que vos méthodes de test xUnit s'autodéterminent pour signaler un résultat "sauté". Utile pour les cas tels que les résultats "non pris en charge sur cette plate-forme" ou d'autres entrées environnementales. <br>
+WebdriverManager : Il est responsable du téléchargement de la bonne version des pilotes. <br>
+xUnit.SkippableFact : Fait en sorte que vos méthodes de test xUnit s'autodéterminent pour signaler un résultat "sauté". Utile pour les cas tels que les résultats "non pris en charge sur cette plate-forme" ou d'autres entrées environnementales. <br>
 AutoFixture : AutoFixture permet aux développeurs de réaliser plus facilement un développement piloté par les tests en automatisant la configuration des montages de test non pertinents, permettant au développeur de test de se concentrer sur l'essentiel de chaque cas de test. <br>
 
 <h4>Commencer à coder le projet : </h4>
