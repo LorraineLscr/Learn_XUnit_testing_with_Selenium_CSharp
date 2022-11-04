@@ -9,7 +9,14 @@
 <h3 align="left">Languages and Tools:</h3>
   <div align="left">
   <a href="https://www.selenium.dev" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/detain/svg-logos/780f25886640cef088af994181646db2f6b1a3f8/svg/selenium-logo.svg" alt="selenium" width="40" height="40"/> </a> 
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="40" width="52" alt="csharp logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" height="40" width="52" alt="visualstudio logo"  />
+
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" height="40" width="52" alt="dot-net logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" height="40" width="52" alt="dotnetcore logo"  />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg" height="40" width="52" alt="chrome logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firefox/firefox-original.svg" height="40" width="52" alt="firefox logo"  />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/safari/safari-original.svg" height="40" width="52" alt="safari logo"  />
 </div>
 
 ###
@@ -89,6 +96,16 @@ L'approche la plus courante consiste à charger les données à partir de la pro
 </table>
 
 <h4> Documentation : </h4> 
-https://www.youtube.com/watch?v=gOC_lCz2zXs <br>
+<div align="left">
+  <img src="https://raw.githubusercontent.com/maurodesouza/profile-readme-generator/master/src/assets/icons/social/youtube/default.svg" width="52" height="40" alt="youtube logo"  /> https://www.youtube.com/watch?v=gOC_lCz2zXs <br>
+</div>
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" height="40" width="52" alt="github logo"  /> https://github.com/xunit/samples.xunit
+</div> 
+<div align="left">
+<img alt="Logo Test Lambda" src="https://www.lambdatest.com/resources/images/logos/logo.svg" width="147" height="26">
 https://www.lambdatest.com/blog/xunit-testing-tutorial/ <br>
-https://github.com/xunit/samples.xunit
+</div>
+
+
+
